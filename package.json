@@ -9,6 +9,7 @@
   "dependencies": {
     "easyimage": "^0.1.7",
     "express": "^3.18.0",
+    "gifsicle": "^1.0.3",
     "hbs": "^2.7.0",
     "image-size": "^0.3.5",
     "multer": "^0.1.6",
