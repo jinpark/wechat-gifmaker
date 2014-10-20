@@ -21,7 +21,9 @@ $(function () {
         status('0%');
         var formData = new FormData();
         var file = document.getElementById('userFileInput').files[0];
+        var gifUrl = document.getElementById('userFileInputUrl').value;
         formData.append('userFile', file);
+        formData.append('gifUrl', gifUrl);
         var xhr = new XMLHttpRequest();
         xhr.overrideMimeType('application/json');
         xhr.open('post', '/api/upload', true);
@@ -34,6 +36,7 @@ $(function () {
         };
         xhr.onload = function () {
             $('#userFileInput').val('');
+            $('#userFileInputUrl').val('');
             setProgress(0);
             var resJson = JSON.parse(xhr.responseText);
             console.log(resJson);

@@ -26,6 +26,10 @@ function getExtension(fn) {
     return fn.split('.').pop();
 }
 
+function getFileName(fn) {
+    return fn.split('/').pop();
+}
+
 function fnAppend(fn, insert) {
     var arr = fn.split('.');
     var ext = arr.pop();
@@ -48,18 +52,30 @@ app.get('/', function(req, res) {
 });
 
 app.post('/api/upload', function (req, res) {
-    if (req.files.userFile.extension == 'gif') {
-        console.log('image get');
-        img.info(req.files.userFile.path, function (err, stdout, stderr) {
-            if (err) throw err;
-
-            convertGif(res, req.files.userFile.path, height);
-
+    console.log(req.files.length);
+    if (req.files.length == undefined && req.body.gifUrl) {
+        console.log('in here');
+        request.get({url: req.body.gifUrl, encoding: 'binary'}, function (err, response, body) {
+            var fileName = __dirname + "/static/uploads/" + Date.now() + getFileName(req.body.gifUrl);
+            fs.writeFile(fileName, body, 'binary', function(err) {
+                if (err) { throw err; }
+                convertGif(res, fileName, height);
+            }); 
         });
     } else {
-        console.log('else');
-        res.send({image: false, file: req.files.userFile.originalname, outout: req.files.userFile.name, reason: "not an image or gif"});
-        return false;
+        if (req.files.userFile.extension == 'gif') {
+            console.log('image get');
+            img.info(req.files.userFile.path, function (err, stdout, stderr) {
+                if (err) throw err;
+
+                convertGif(res, req.files.userFile.path, height);
+
+            });
+        } else {
+            console.log('else');
+            res.send({image: false, file: req.files.userFile.originalname, outout: req.files.userFile.name, reason: "not an image or gif"});
+            return false;
+        }
     }
 });
 

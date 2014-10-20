@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>Upload Example</title>
+    <title>wechat gif converter</title>
     <style type="text/css" media="screen">
         #progress {
             width: 500px;
@@ -27,6 +27,9 @@
       action="/api/upload"
       method="post">
     <input type="file" id="userFileInput" name="userFile"/>
+    <label for="userFileInputUrl">GIF URL</label>
+    <input type="text" id="userFileInputUrl" name="userFileUrl"/>
+    <input type="submit" value="submit">
 </form>
 <span id="status"></span>
 
