@@ -35,8 +35,7 @@ $(function () {
             status('error while trying to upload');
         };
         xhr.onload = function () {
-            $('#userFileInput').val('');
-            $('#userFileInputUrl').val('');
+            document.getElementById('uploadForm').reset();
             setProgress(0);
             var resJson = JSON.parse(xhr.responseText);
             console.log(resJson);

@@ -56,10 +56,11 @@ app.post('/api/upload', function (req, res) {
     if (req.files.length == undefined && req.body.gifUrl) {
         console.log('in here');
         request.get({url: req.body.gifUrl, encoding: 'binary'}, function (err, response, body) {
-            var fileName = __dirname + "/static/uploads/" + Date.now() + getFileName(req.body.gifUrl);
-            fs.writeFile(fileName, body, 'binary', function(err) {
+            var staticFileName = "static/uploads/" + Date.now() + getFileName(req.body.gifUrl);
+
+            fs.writeFile(staticFileName, body, 'binary', function(err) {
                 if (err) { throw err; }
-                convertGif(res, fileName, height);
+                convertGif(res, staticFileName, height);
             }); 
         });
     } else {
