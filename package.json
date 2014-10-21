@@ -1,6 +1,6 @@
 {
-  "name": "express-upload",
-  "description": "express-upload: node.js, express, multer, easyimage, html5 progress upload example",
+  "name": "wechat gifmaker",
+  "description": "converts gifs to wechat sticker sized gifs (~175 px, ~200kb)",
   "version": "0.0.1",
   "engines": {
     "node": ">= 0.10.x"
