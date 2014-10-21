@@ -1,8 +1,9 @@
-express-upload
+wechat gif -> sticker converter
 ==============
 
-express-upload: node.js, express, multer, easyimage, html5 progress upload example
+node.js, express, multer, easyimage, gifsicle, hbs, image-size, request, html5 progress upload 
 
-##Image Handling
+##Info
 
-Uses node module easyimage for thumbnail creation to demonstrate resize upon upload
+Uses gifsicle to convert gifs to wechat sized gifs (~175 px, ~200 kb)
+Takes in url or gif file to upload
